@@ -52,7 +52,7 @@ const RentPayment = () => {
             </DialogTrigger>
             <DialogContent className="p-0 max-w-200">
               <DialogHeader>
-                <DialogTitle className="rounded-t-[14px] rounded-[14px] font-medium bg-[#F4F4F4] text-[#6F6C6A] px-4 py-3.5">
+                <DialogTitle className="rounded-b-none rounded-[14px] font-medium bg-[#F4F4F4] text-[#6F6C6A] px-4 py-3.5">
                   Rent frequency & payment reminder
                 </DialogTitle>
               </DialogHeader>

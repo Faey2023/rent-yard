@@ -39,12 +39,12 @@ const Parking = () => {
             </DialogTrigger>
             <DialogContent className="p-0 max-w-200">
               <DialogHeader>
-                <DialogTitle className="rounded-t-[14px] rounded-[14px] font-medium bg-[#F4F4F4] text-[#6F6C6A] px-4 py-3.5">
+                <DialogTitle className="rounded-b-none rounded-[14px] font-medium bg-[#F4F4F4] text-[#6F6C6A] px-4 py-3.5">
                   Parking
                 </DialogTitle>
               </DialogHeader>
               <div className="px-4">
-                <div className="flex p-4 justify-between items-center h-12 w-1/2 border border-[#eoeoeo] rounded-lg">
+                <div className="flex p-4 justify-between items-center h-12 w-1/2 border border-[#E0E0E0] rounded-lg">
                   <h3 className="font-semibold">Guest vehicle parking time</h3>
 
                   <Select>
@@ -62,6 +62,7 @@ const Parking = () => {
                 </div>
                 <Textarea
                   className="h-41 mt-10"
+                  minLength={200}
                   placeholder="Write parking overview"
                 />
               </div>

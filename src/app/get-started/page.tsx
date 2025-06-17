@@ -5,13 +5,13 @@ import Charges from "@/components/get-started/Charges";
 import CommunityFeature from "@/components/get-started/CommunityFeature";
 import LeasingInfo from "@/components/get-started/LeasingInfo";
 import NearestEduInstitute from "@/components/get-started/NearestEduInstitute";
-
 import NearestStation from "@/components/get-started/NearestStation";
 import Parking from "@/components/get-started/Parking";
 import PetFees from "@/components/get-started/PetFees";
 import PropertyInfo from "@/components/get-started/PropertyInfo";
 import RentPayment from "@/components/get-started/RentPayment";
 import Utilities from "@/components/get-started/Utilities";
+import { Button } from "@/components/ui/button";
 
 const GetStartedPage = () => {
   return (
@@ -35,6 +35,11 @@ const GetStartedPage = () => {
           <AddLandmark />
           <Utilities />
         </div>
+      </div>
+      <div className="flex pt-10 pb-5 justify-between">
+        <Button variant={"link"}>Exit</Button>
+
+        <Button className="w-32 h-12 rounded-[12px]">Next</Button>
       </div>
     </div>
   );

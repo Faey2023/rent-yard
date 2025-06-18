@@ -14,7 +14,7 @@ import { Checkbox } from "../ui/checkbox";
 
 const ApplicationAgreement = () => {
   return (
-    <div className="h-fit py-4 px-3 rounded-[20px] border border-[#eoeoeo]">
+    <div className="h-fit py-4 px-3 rounded-[20px] border border-[#E0E0E0]">
       <div className="flex justify-between">
         <h4 className="text-black font-semibold text-lg">
           Application agreement

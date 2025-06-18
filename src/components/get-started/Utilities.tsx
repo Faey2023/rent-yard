@@ -20,7 +20,7 @@ import { Input } from "../ui/input";
 
 const Utilities = () => {
   return (
-    <div className="h-fit py-4 px-3 rounded-lg border border-[#eoeoeo]">
+    <div className="h-fit py-4 px-3 rounded-lg border border-[#E0E0E0]">
       <div className="flex justify-between">
         <h4 className="text-black font-semibold text-lg">
           Utilities provider
@@ -72,7 +72,7 @@ const Utilities = () => {
                   <Input
                     type="text"
                     placeholder="Enter Name"
-                    className="h-12 border-[#eoeoeo] rounded-lg"
+                    className="h-12 border-[#E0E0E0] rounded-lg"
                     required
                   />
                 </div>

@@ -54,7 +54,7 @@ const PropertyInfo = () => {
   console.log(selectedCode);
 
   return (
-    <div className="h-fit py-4 px-3 rounded-[20px] border border-[#eoeoeo]">
+    <div className="h-fit py-4 px-3 rounded-[20px] border border-[#E0E0E0]">
       <div className="flex justify-between">
         <h4 className="text-black font-semibold text-lg">
           Property address<span className="text-[#FF6A62]">(Required)</span>{" "}
@@ -86,7 +86,7 @@ const PropertyInfo = () => {
                   <Input
                     type="text"
                     placeholder="Dallas apartments complex"
-                    className="h-12 w-60 border-[#eoeoeo] rounded-lg"
+                    className="h-12 w-60 border-[#E0E0E0] rounded-lg"
                     required
                   />
                 </div>
@@ -112,7 +112,7 @@ const PropertyInfo = () => {
                   <Input
                     type="text"
                     placeholder="Manager"
-                    className="h-12 w-60 border-[#eoeoeo] rounded-lg"
+                    className="h-12 w-60 border-[#E0E0E0] rounded-lg"
                     required
                   />
                 </div>
@@ -143,7 +143,7 @@ const PropertyInfo = () => {
                   <Input
                     type="text"
                     placeholder="111 Austin Ave"
-                    className="h-12 w-60 border-[#eoeoeo] rounded-lg"
+                    className="h-12 w-60 border-[#E0E0E0] rounded-lg"
                     required
                   />
                 </div>
@@ -166,7 +166,7 @@ const PropertyInfo = () => {
                   <Input
                     type="text"
                     placeholder="Dallas"
-                    className="h-12 w-60 border-[#eoeoeo] rounded-lg"
+                    className="h-12 w-60 border-[#E0E0E0] rounded-lg"
                     required
                   />
                 </div>

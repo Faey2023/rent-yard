@@ -117,7 +117,7 @@ const Stepper = () => {
               className={`cursor-pointer rounded-lg border p-4 transition hover:shadow-sm ${
                 propertyType === item.value
                   ? "border-[#316EED] bg-[#F9FBFF]"
-                  : "border-[#eoeoeo]"
+                  : "border-[#E0E0E0]"
               }`}
             >
               <div className="p-2 size-14 flex justify-center items-center rounded-md bg-[#F9FBFF]">
@@ -142,7 +142,7 @@ const Stepper = () => {
               className={`cursor-pointer rounded-lg border p-4 transition hover:shadow-sm ${
                 role === item.value
                   ? "border-[#316EED] bg-[#F9FBFF]"
-                  : "border-[#eoeoeo]"
+                  : "border-[#E0E0E0]"
               }`}
             >
               <div className="p-2 size-14 flex justify-center items-center rounded-md bg-[#F9FBFF]">
@@ -161,7 +161,7 @@ const Stepper = () => {
 
       {/* field if role landlord */}
       {role === "landlord" && (
-        <div className="mt-10 border border-[#eoeoeo] rounded-[14px]">
+        <div className="mt-10 border border-[#E0E0E0] rounded-[14px]">
           <h2 className="text-lg rounded-t-[14px] font-medium bg-[#F4F4F4] text-[#6F6C6A] px-4 py-3.5">
             Proof of ownership
           </h2>
@@ -190,7 +190,7 @@ const Stepper = () => {
 
       {/* field if role realtor */}
       {role === "realtor" && (
-        <div className="mt-10 border border-[#eoeoeo] rounded-[14px]">
+        <div className="mt-10 border border-[#E0E0E0] rounded-[14px]">
           <h2 className="text-lg rounded-t-[14px] font-medium bg-[#F4F4F4] text-[#6F6C6A] px-4 py-3.5">
             Realtor verification
           </h2>
@@ -252,7 +252,7 @@ const Stepper = () => {
 
       {/* field if role manager */}
       {role === "manager" && (
-        <div className="mt-10 border border-[#eoeoeo] rounded-[14px]">
+        <div className="mt-10 border border-[#E0E0E0] rounded-[14px]">
           <h2 className="text-lg rounded-t-[14px] font-medium bg-[#F4F4F4] text-[#6F6C6A] px-4 py-3.5">
             Realtor verification
           </h2>
@@ -263,7 +263,7 @@ const Stepper = () => {
               <Input
                 type="text"
                 placeholder="Runyan trade center"
-                className="h-12 w-75 border-[#eoeoeo] rounded-lg"
+                className="h-12 w-75 border-[#E0E0E0] rounded-lg"
                 required
               />
             </div>
@@ -273,7 +273,7 @@ const Stepper = () => {
               <Input
                 type="text"
                 placeholder="Name"
-                className="h-12 w-75 border-[#eoeoeo] rounded-lg"
+                className="h-12 w-75 border-[#E0E0E0] rounded-lg"
                 required
               />
             </div>
@@ -283,7 +283,7 @@ const Stepper = () => {
               <Input
                 type="text"
                 placeholder="Manager"
-                className="h-12 w-75 border-[#eoeoeo] rounded-lg"
+                className="h-12 w-75 border-[#E0E0E0] rounded-lg"
                 required
               />
             </div>
@@ -334,7 +334,7 @@ const Stepper = () => {
               <Input
                 type="text"
                 placeholder="111 Austin Ave"
-                className="h-12 w-75 border-[#eoeoeo] rounded-lg"
+                className="h-12 w-75 border-[#E0E0E0] rounded-lg"
                 required
               />
             </div>
@@ -351,7 +351,7 @@ const Stepper = () => {
 
             <div>
               <Label>Phone number*</Label>
-              <div className="h-12 flex rounded-lg border-[#eoeoeo] border overflow-hidden w-full">
+              <div className="h-12 flex rounded-lg border-[#E0E0E0] border overflow-hidden w-full">
                 <Select
                   onValueChange={(val) => setCountry(val)}
                   defaultValue="bd"
@@ -381,7 +381,7 @@ const Stepper = () => {
               <Input
                 type="text"
                 placeholder="majarul2025@gmail.com"
-                className="h-12 w-75 border-[#eoeoeo] rounded-lg"
+                className="h-12 w-75 border-[#E0E0E0] rounded-lg"
                 required
               />
             </div>
@@ -391,7 +391,7 @@ const Stepper = () => {
               <Input
                 type="text"
                 placeholder="Dallas"
-                className="h-12 w-75 border-[#eoeoeo] rounded-lg"
+                className="h-12 w-75 border-[#E0E0E0] rounded-lg"
                 required
               />
             </div>

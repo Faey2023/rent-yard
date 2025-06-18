@@ -20,7 +20,7 @@ import { Input } from "../ui/input";
 
 const AddLandmark = () => {
   return (
-    <div className="h-fit py-4 px-3 rounded-lg border border-[#eoeoeo]">
+    <div className="h-fit py-4 px-3 rounded-lg border border-[#E0E0E0]">
       <div className="flex justify-between">
         <h4 className="text-black font-semibold text-lg">
           Nearest landmarks
@@ -68,7 +68,7 @@ const AddLandmark = () => {
                       Distance from property
                       <span className="text-[#FF6A62]">*</span>
                     </Label>
-                    <div className="flex w-full max-w-sm overflow-hidden rounded-md border border-[#eoeoeo]">
+                    <div className="flex w-full max-w-sm overflow-hidden rounded-md border border-[#E0E0E0]">
                       <Input
                         type="number"
                         placeholder="1.5"
@@ -96,7 +96,7 @@ const AddLandmark = () => {
                   <Input
                     type="text"
                     placeholder="Enter Name"
-                    className="h-12 border-[#eoeoeo] rounded-lg"
+                    className="h-12 border-[#E0E0E0] rounded-lg"
                     required
                   />
                 </div>

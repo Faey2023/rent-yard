@@ -53,7 +53,7 @@ const LeasingInfo = () => {
   console.log(selectedCode);
 
   return (
-    <div className="h-fit py-4 px-3 rounded-[20px] border border-[#eoeoeo]">
+    <div className="h-fit py-4 px-3 rounded-[20px] border border-[#E0E0E0]">
       <div className="flex justify-between">
         <h4 className="text-black font-semibold text-lg">
           Leasing Info<span className="text-[#FF6A62]">(Required)</span>{" "}
@@ -85,14 +85,14 @@ const LeasingInfo = () => {
                   <Input
                     type="text"
                     placeholder="Alex johan"
-                    className="h-12   border-[#eoeoeo] rounded-lg"
+                    className="h-12   border-[#E0E0E0] rounded-lg"
                     required
                   />
                 </div>
 
                 <div>
                   <Label>Phone number*</Label>
-                  <div className="h-12 flex rounded-lg border-[#eoeoeo] border overflow-hidden w-full">
+                  <div className="h-12 flex rounded-lg border-[#E0E0E0] border overflow-hidden w-full">
                     <Select
                       onValueChange={(val) => setCountry(val)}
                       defaultValue="bd"
@@ -125,7 +125,7 @@ const LeasingInfo = () => {
                   <Input
                     type="text"
                     placeholder="leasing@rentyeard.com"
-                    className="h-12 border-[#eoeoeo] rounded-lg"
+                    className="h-12 border-[#E0E0E0] rounded-lg"
                     required
                   />
                 </div>

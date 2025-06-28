@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 
 const GetStartedPage = () => {
   return (
-    <div className="px-5 w-full md:px-10 mt-5 bg-white flex flex-col justify-between">
+    <div className="px-5 w-full md:px-10 mt-5 bg-white flex flex-col">
       <h1 className="text-2xl font-bold">Condominiums information</h1>
       <div className="my-5 grid gap-5 grid-cols-1 md:grid-cols-2 ">
         <div className="flex flex-col gap-5">

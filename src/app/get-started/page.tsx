@@ -13,10 +13,11 @@ import PropertyInfo from "@/components/get-started/PropertyInfo";
 import RentPayment from "@/components/get-started/RentPayment";
 import Utilities from "@/components/get-started/Utilities";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const GetStartedPage = () => {
   return (
-    <div className="px-5 w-full md:px-10 mt-5 bg-white flex flex-col">
+    <div className="p-5 w-full md:px-10 mt-5 bg-white flex flex-col">
       <h1 className="text-2xl font-bold">Condominiums information</h1>
       <div className="my-5 grid gap-5 grid-cols-1 md:grid-cols-2 ">
         <div className="flex flex-col gap-5">
@@ -38,10 +39,21 @@ const GetStartedPage = () => {
         </div>
       </div>
       <Gallery />
-      <div className="flex pt-10 pb-5 justify-between">
-        <Button variant={"link"}>Exit</Button>
 
-        <Button className="w-32 h-12 rounded-[12px]">Next</Button>
+      <div className="flex pt-10 pb-5 justify-between">
+        <div className="w-full mb-4">
+          <div className="rounded-full flex gap-2">
+            <div className="h-1 w-1/2 bg-black" />
+            <div className="h-1 w-1/2 bg-[#E0E0E0]" />
+          </div>
+        </div>
+      </div>
+
+      <div className="flex justify-between">
+        <Button variant="link">Back</Button>
+        <Link href="/payment">
+          <Button>Next</Button>
+        </Link>
       </div>
     </div>
   );

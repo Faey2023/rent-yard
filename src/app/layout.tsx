@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Fustat } from "next/font/google";
 import "./globals.css";
-import Nav from "@/components/ui/shared/Nav";
+import Nav from "@/components/shared/Nav";
 
 const fustat = Fustat({
   variable: "--font-fustat",
@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${fustat.variable}  antialiased`}>
+      <body className={`${fustat.variable}`}>
         <Nav />
         {children}
       </body>

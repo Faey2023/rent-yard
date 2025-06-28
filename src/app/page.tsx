@@ -106,7 +106,7 @@ const Stepper = () => {
   };
 
   return (
-    <div className="px-10 bg-white flex flex-col justify-between">
+    <div className="px-5 md:px-10 bg-white flex flex-col justify-between">
       <div className="mt-5 w-full mx-auto space-y-10">
         <h1 className="text-2xl font-bold">Property type</h1>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -162,12 +162,12 @@ const Stepper = () => {
       {/* field if role landlord */}
       {role === "landlord" && (
         <div className="mt-10 border border-[#eoeoeo] rounded-[14px]">
-          <h2 className="text-lg font-medium bg-[#F4F4F4] text-[#6F6C6A] px-4 py-3.5">
+          <h2 className="text-lg rounded-t-[14px] font-medium bg-[#F4F4F4] text-[#6F6C6A] px-4 py-3.5">
             Proof of ownership
           </h2>
           <div className="px-4 py-3.5">
             <Label>Ownership doc*</Label>
-            <div className="relative h-12 w-100 border border-dashed border-[#E0E0E0] rounded-lg bg-[#F6F6F6] cursor-pointer">
+            <div className="relative h-12 max-w-100 border border-dashed border-[#E0E0E0] rounded-lg bg-[#F6F6F6] cursor-pointer">
               <div className="absolute inset-0 flex items-center justify-center gap-2 pointer-events-none">
                 <Upload className="size-6" />
                 <span className="text-[#6F6C6A] font-semibold text-sm">
@@ -188,11 +188,10 @@ const Stepper = () => {
       )}
       {/* field if role landlord */}
 
-
       {/* field if role realtor */}
       {role === "realtor" && (
         <div className="mt-10 border border-[#eoeoeo] rounded-[14px]">
-          <h2 className="text-lg font-medium bg-[#F4F4F4] text-[#6F6C6A] px-4 py-3.5">
+          <h2 className="text-lg rounded-t-[14px] font-medium bg-[#F4F4F4] text-[#6F6C6A] px-4 py-3.5">
             Realtor verification
           </h2>
 
@@ -202,14 +201,14 @@ const Stepper = () => {
               <Input
                 type="number"
                 placeholder="000000000000"
-                className="h-12 w-100 border-[#e0e0e0] rounded-lg [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]"
+                className="h-12 max-w-100 border-[#e0e0e0] rounded-lg [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]"
                 required
               />
             </div>
 
             <div>
               <Label>Additional documents for realtor</Label>
-              <div className="relative h-12 w-100 border border-dashed border-[#E0E0E0] rounded-lg bg-[#F6F6F6] cursor-pointer">
+              <div className="relative h-12 max-w-100 border border-dashed border-[#E0E0E0] rounded-lg bg-[#F6F6F6] cursor-pointer">
                 <div className="absolute inset-0 flex items-center justify-center gap-2 pointer-events-none">
                   <Upload className="size-6" />
                   <span className="text-[#6F6C6A] font-semibold text-sm">
@@ -229,7 +228,7 @@ const Stepper = () => {
 
             <div>
               <Label>Agreement with landlord*</Label>
-              <div className="relative h-12 w-100 border border-dashed border-[#E0E0E0] rounded-lg bg-[#F6F6F6] cursor-pointer">
+              <div className="relative h-12 max-w-100 border border-dashed border-[#E0E0E0] rounded-lg bg-[#F6F6F6] cursor-pointer">
                 <div className="absolute inset-0 flex items-center justify-center gap-2 pointer-events-none">
                   <Upload className="size-6" />
                   <span className="text-[#6F6C6A] font-semibold text-sm">
@@ -251,11 +250,10 @@ const Stepper = () => {
       )}
       {/* field if role realtor */}
 
-
       {/* field if role manager */}
       {role === "manager" && (
         <div className="mt-10 border border-[#eoeoeo] rounded-[14px]">
-          <h2 className="text-lg font-medium bg-[#F4F4F4] text-[#6F6C6A] px-4 py-3.5">
+          <h2 className="text-lg rounded-t-[14px] font-medium bg-[#F4F4F4] text-[#6F6C6A] px-4 py-3.5">
             Realtor verification
           </h2>
 
@@ -319,7 +317,7 @@ const Stepper = () => {
                 }}
               >
                 <SelectTrigger className="w-75">
-                  <SelectValue placeholder="Select country" />
+                  <SelectValue placeholder="Choose country" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="bd">Bangladesh</SelectItem>

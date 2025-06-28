@@ -3,6 +3,7 @@ import AddLandmark from "@/components/get-started/AddLandmark";
 import ApplicationAgreement from "@/components/get-started/ApplicationAgreement";
 import Charges from "@/components/get-started/Charges";
 import CommunityFeature from "@/components/get-started/CommunityFeature";
+import Gallery from "@/components/get-started/Gallery";
 import LeasingInfo from "@/components/get-started/LeasingInfo";
 import NearestEduInstitute from "@/components/get-started/NearestEduInstitute";
 import NearestStation from "@/components/get-started/NearestStation";
@@ -36,6 +37,7 @@ const GetStartedPage = () => {
           <Utilities />
         </div>
       </div>
+      <Gallery />
       <div className="flex pt-10 pb-5 justify-between">
         <Button variant={"link"}>Exit</Button>
 

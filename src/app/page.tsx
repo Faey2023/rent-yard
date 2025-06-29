@@ -94,8 +94,7 @@ const Stepper = () => {
   const [role, setRole] = useState<string | null>(null);
   const router = useRouter();
   const [country, setCountry] = useState<string>("bd");
-  const [state, setState] = useState<string>("");
-  console.log(state);
+  const [, setState] = useState<string>("");
 
   const selectedCode = stateOptions[country]?.code || "";
 

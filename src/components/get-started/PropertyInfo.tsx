@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -18,8 +19,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Plus } from "lucide-react";
-import { useState } from "react";
+import { ListingData } from "@/types";
+import { Plus, SquarePen } from "lucide-react";
+
+type Props = {
+  updateData: React.Dispatch<React.SetStateAction<ListingData>>;
+  listingData: ListingData;
+};
 
 const stateOptions: Record<string, { code: string; states: string[] }> = {
   bd: {
@@ -44,82 +50,144 @@ const stateOptions: Record<string, { code: string; states: string[] }> = {
   },
 };
 
-const PropertyInfo = () => {
-  const [country, setCountry] = useState<string>("bd");
-  const [state, setState] = useState<string>("");
-  console.log(state);
+const PropertyInfo = ({ updateData, listingData }: Props) => {
+  const [open, setOpen] = useState(false);
+  const [formError, setFormError] = useState("");
 
-  const selectedCode = stateOptions[country]?.code || "";
+  const [propertyName, setPropertyName] = useState("");
+  const [propertyUnit, setPropertyUnit] = useState("");
+  const [propertyWebsite, setPropertyWebsite] = useState("");
+  const [country, setCountry] = useState("");
+  const [propertyStreet, setPropertyStreet] = useState("");
+  const [propertyApt, setPropertyApt] = useState("");
+  const [propertyCity, setPropertyCity] = useState("");
+  const [state, setState] = useState("");
+  const [propertyZipCode, setPropertyZipCode] = useState("");
 
-  console.log(selectedCode);
+  useEffect(() => {
+    if (open) {
+      setPropertyName(listingData.propertyName || "");
+      setPropertyUnit(listingData.propertyUnit?.toString() || "");
+      setPropertyWebsite(listingData.propertyWebsite || "");
+      setCountry(listingData.propertyCountry || "");
+      setPropertyStreet(listingData.propertyStreet || "");
+      setPropertyApt(listingData.propertyApt?.toString() || "");
+      setPropertyCity(listingData.propertyCity || "");
+      setState(listingData.propertyState || "");
+      setPropertyZipCode(listingData.propertyZipCode?.toString() || "");
+    }
+  }, [open, listingData]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (
+      !propertyName.trim() ||
+      !propertyUnit.trim() ||
+      !propertyStreet.trim() ||
+      !propertyCity.trim() ||
+      !state.trim() ||
+      !propertyZipCode.trim()
+    ) {
+      setFormError("Please fill in all required fields.");
+      return;
+    }
+
+    setFormError("");
+
+    updateData((prev) => ({
+      ...prev,
+      propertyName,
+      propertyUnit: Number(propertyUnit),
+      propertyWebsite,
+      propertyCountry: country,
+      propertyStreet,
+      propertyApt: propertyApt ? Number(propertyApt) : undefined,
+      propertyCity,
+      propertyState: state,
+      propertyZipCode: Number(propertyZipCode),
+    }));
+
+    setOpen(false);
+  };
+
+  const hasData = listingData.propertyName && listingData.propertyCity;
 
   return (
     <div className="h-fit py-4 px-3 rounded-[20px] border border-[#E0E0E0]">
-      <div className="flex justify-between">
+      <div
+        className={`flex justify-between ${
+          hasData ? "border-b border-[#E0E0E0] pb-2 mb-3" : ""
+        }`}
+      >
         <h4 className="text-black font-semibold text-lg">
-          Property address<span className="text-[#FF6A62]">(Required)</span>{" "}
+          Property address<span className="text-[#FF6A62]">(Required)</span>
         </h4>
 
-        <Dialog>
-          <form>
-            <DialogTrigger asChild>
-              <Button
-                variant="link"
-                className="flex decoration-[#316EED] text-[#316EED] gap-1"
-              >
-                <Plus />
-                Add
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="p-0 max-w-200">
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger asChild>
+            <Button
+              variant="link"
+              className="flex decoration-[#316EED] text-[#316EED] gap-1"
+            >
+              {hasData ? <SquarePen /> : <Plus />}
+              {hasData ? "Edit" : "Add"}
+            </Button>
+          </DialogTrigger>
+
+          <DialogContent className="p-0 max-w-200">
+            <form onSubmit={handleSubmit}>
               <DialogHeader>
                 <DialogTitle className="rounded-b-none rounded-[14px] font-medium bg-[#F4F4F4] text-[#6F6C6A] px-4 py-3.5">
-                  Edit profile
+                  Property Address
                 </DialogTitle>
               </DialogHeader>
+
               <div className="px-4 py-3.5 grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <Label>
-                    Property name as identifier
-                    <span className="text-[#FF6A62]">*</span>
+                    Property name<span className="text-[#FF6A62]">*</span>
                   </Label>
                   <Input
-                    type="text"
+                    value={propertyName}
+                    onChange={(e) => setPropertyName(e.target.value)}
                     placeholder="Dallas apartments complex"
                     className="h-12 w-60 border-[#E0E0E0] rounded-lg"
-                    required
                   />
                 </div>
 
                 <div>
                   <Label>
-                    Total apartment unit
-                    <span className="text-[#FF6A62]">*</span>
+                    Total units<span className="text-[#FF6A62]">*</span>
                   </Label>
                   <Input
+                    value={propertyUnit}
+                    onChange={(e) => setPropertyUnit(e.target.value)}
                     type="number"
                     placeholder="50"
-                    className="h-12 max-w-60 border-[#e0e0e0] rounded-lg [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]"
-                    required
+                    className="h-12 w-60 rounded-lg"
                   />
                 </div>
 
                 <div>
                   <Label>
-                    Property website
-                    <span className="text-[#6F6C6A]">(optional)</span>
+                    Website<span className="text-[#6F6C6A]"> (optional)</span>
                   </Label>
                   <Input
-                    type="text"
-                    placeholder="Manager"
-                    className="h-12 w-60 border-[#E0E0E0] rounded-lg"
-                    required
+                    value={propertyWebsite}
+                    onChange={(e) => setPropertyWebsite(e.target.value)}
+                    placeholder="https://"
+                    className="h-12 w-60 rounded-lg"
+                    type="url"
                   />
                 </div>
 
                 <div>
-                  <Label>Country/Region*</Label>
+                  <Label>
+                    Country<span className="text-[#FF6A62]">*</span>
+                  </Label>
                   <Select
+                    value={country}
                     onValueChange={(val) => {
                       setCountry(val);
                       setState("");
@@ -139,56 +207,60 @@ const PropertyInfo = () => {
                 </div>
 
                 <div>
-                  <Label>Street address*</Label>
+                  <Label>
+                    Street address<span className="text-[#FF6A62]">*</span>
+                  </Label>
                   <Input
-                    type="text"
+                    value={propertyStreet}
+                    onChange={(e) => setPropertyStreet(e.target.value)}
                     placeholder="111 Austin Ave"
-                    className="h-12 w-60 border-[#E0E0E0] rounded-lg"
-                    required
+                    className="h-12 w-60 rounded-lg"
                   />
                 </div>
 
                 <div>
                   <Label>
-                    Apt, suite, unit
-                    <span className="text-[#6F6C6A]">(if applicable)</span>
+                    Apt, Suite{" "}
+                    <span className="text-[#6F6C6A]">(optional)</span>
                   </Label>
                   <Input
+                    value={propertyApt}
+                    onChange={(e) => setPropertyApt(e.target.value)}
                     type="number"
                     placeholder="123"
-                    className="h-12 max-w-60 border-[#e0e0e0] rounded-lg [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]"
-                    required
+                    className="h-12 w-60 rounded-lg"
                   />
                 </div>
 
                 <div>
-                  <Label>City/Town*</Label>
+                  <Label>
+                    City/Town<span className="text-[#FF6A62]">*</span>
+                  </Label>
                   <Input
-                    type="text"
+                    value={propertyCity}
+                    onChange={(e) => setPropertyCity(e.target.value)}
                     placeholder="Dallas"
-                    className="h-12 w-60 border-[#E0E0E0] rounded-lg"
-                    required
+                    className="h-12 w-60 rounded-lg"
                   />
                 </div>
 
                 <div>
-                  <Label>State/Territory*</Label>
+                  <Label>
+                    State<span className="text-[#FF6A62]">*</span>
+                  </Label>
                   <Select
+                    value={state}
                     onValueChange={(val) => setState(val)}
                     disabled={!country}
                   >
-                    <SelectTrigger className="w-60 h-12">
-                      <SelectValue
-                        placeholder={
-                          country ? "Select state" : "Select country first"
-                        }
-                      />
+                    <SelectTrigger className="w-60">
+                      <SelectValue placeholder="Select state" />
                     </SelectTrigger>
                     <SelectContent>
                       {country &&
-                        stateOptions[country]?.states.map((state) => (
-                          <SelectItem key={state} value={state}>
-                            {state}
+                        stateOptions[country]?.states.map((s) => (
+                          <SelectItem key={s} value={s}>
+                            {s}
                           </SelectItem>
                         ))}
                     </SelectContent>
@@ -196,22 +268,40 @@ const PropertyInfo = () => {
                 </div>
 
                 <div>
-                  <Label>Zip Code*</Label>
+                  <Label>
+                    Zip Code<span className="text-[#FF6A62]">*</span>
+                  </Label>
                   <Input
+                    value={propertyZipCode}
+                    onChange={(e) => setPropertyZipCode(e.target.value)}
                     type="number"
                     placeholder="75061"
-                    className="h-12 w-60 border-[#e0e0e0] rounded-lg [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [appearance:textfield]"
-                    required
+                    className="h-12 w-60 rounded-lg"
                   />
                 </div>
               </div>
+
               <DialogFooter className="px-4 py-3.5 flex justify-end">
-                <Button type="submit">Add</Button>
+                {formError && (
+                  <p className="text-red-500 text-sm font-medium mr-auto">
+                    {formError}
+                  </p>
+                )}
+                <Button type="submit">{hasData ? "Update" : "Add"}</Button>
               </DialogFooter>
-            </DialogContent>
-          </form>
+            </form>
+          </DialogContent>
         </Dialog>
       </div>
+
+      {hasData && (
+        <div className="gap-x-4 gap-y-1 font-semibold text-gray-700">
+          <p>
+            {listingData.propertyName}, {listingData.propertyCity},
+            {listingData.propertyState}, {listingData.propertyCountry}
+          </p>
+        </div>
+      )}
     </div>
   );
 };

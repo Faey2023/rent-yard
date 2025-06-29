@@ -1,3 +1,5 @@
+"use client";
+
 import AboutProperty from "@/components/get-started/AboutProperty";
 import AddLandmark from "@/components/get-started/AddLandmark";
 import ApplicationAgreement from "@/components/get-started/ApplicationAgreement";
@@ -13,17 +15,40 @@ import PropertyInfo from "@/components/get-started/PropertyInfo";
 import RentPayment from "@/components/get-started/RentPayment";
 import Utilities from "@/components/get-started/Utilities";
 import { Button } from "@/components/ui/button";
+import { ListingData } from "@/types";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 const GetStartedPage = () => {
+  // const [listingData, setListingData] = useState<ListingData>({});
+  const [listingData, setListingData] = useState<ListingData>(() => {
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("tempListing");
+      return saved ? JSON.parse(saved) : {};
+    }
+    return {};
+  });
+
+  useEffect(() => {
+    localStorage.setItem("tempListing", JSON.stringify(listingData));
+  }, [listingData]);
+
+  const handlePropertyListing = () => {
+    localStorage.setItem("propertyListing", JSON.stringify(listingData));
+    alert("Saved to localStorage!");
+  };
+
+  console.log(listingData);
+
   return (
     <div className="p-5 w-full md:px-10 mt-5 bg-white flex flex-col">
       <h1 className="text-2xl font-bold">Condominiums information</h1>
       <div className="my-5 grid gap-5 grid-cols-1 md:grid-cols-2 ">
         <div className="flex flex-col gap-5">
-          <PropertyInfo />
+          <PropertyInfo updateData={setListingData} listingData={listingData} />
           <LeasingInfo />
-          <Charges />
+          <Charges updateData={setListingData} listingData={listingData} />
+
           <ApplicationAgreement />
           <AboutProperty />
           <RentPayment />
@@ -52,9 +77,16 @@ const GetStartedPage = () => {
       <div className="flex justify-between">
         <Button variant="link">Back</Button>
         <Link href="/payment">
-          <Button>Next</Button>
+          <Button onClick={handlePropertyListing}>Next</Button>
         </Link>
       </div>
+
+      {/*  */}
+      {/* <pre className="mt-10 bg-gray-100 p-4 rounded-md text-sm text-left">
+        {JSON.stringify(listingData, null, 2)}
+      </pre> */}
+
+      {/*  */}
     </div>
   );
 };

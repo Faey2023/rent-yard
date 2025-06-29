@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -13,28 +13,65 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Info, Plus, SquarePen } from "lucide-react";
+import { ListingData } from "@/types";
 
-const Charges = () => {
-  const [charges, setCharges] = useState<{
-    application: number;
-    admin: number;
-  } | null>(null);
+type Props = {
+  updateData: React.Dispatch<React.SetStateAction<ListingData>>;
+  listingData: ListingData;
+};
+
+type Charges = {
+  application: number;
+  admin: number;
+};
+
+const Charges = ({ updateData, listingData }: Props) => {
+  const [open, setOpen] = useState(false);
+
+  const [charges, setCharges] = useState<Charges | null>(null);
+  const [formError, setFormError] = useState("");
+
   const [applicationFee, setApplicationFee] = useState("");
   const [adminFee, setAdminFee] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const app = Number(applicationFee);
-    const adm = Number(adminFee);
-    if (!isNaN(app) && !isNaN(adm)) {
-      setCharges({ application: app, admin: adm });
-      setApplicationFee("");
-      setAdminFee("");
+
+    if (!applicationFee.trim() || !adminFee.trim()) {
+      setFormError("Both fees are required.");
+      return;
     }
 
-    setApplicationFee(charges?.application.toString() || "");
-    setAdminFee(charges?.admin.toString() || "");
+    const app = Number(applicationFee);
+    const adm = Number(adminFee);
+
+    if (isNaN(app) || isNaN(adm)) {
+      setFormError("Fees must be valid numbers.");
+      return;
+    }
+
+    setFormError(""); // Clear error
+    setCharges({ application: app, admin: adm });
+
+    updateData((prev) => ({
+      ...prev,
+      applicationFee: app,
+      adminFee: adm,
+    }));
+
+    setApplicationFee("");
+    setAdminFee("");
+    setOpen(false);
   };
+
+  useEffect(() => {
+    const app = listingData.applicationFee;
+    const adm = listingData.adminFee;
+
+    if (typeof app === "number" && typeof adm === "number") {
+      setCharges({ application: app, admin: adm });
+    }
+  }, [listingData]);
 
   return (
     <div className="h-fit py-4 px-3 rounded-[20px] border border-[#E0E0E0]">
@@ -47,7 +84,7 @@ const Charges = () => {
           Charges<span className="text-[#FF6A62]">(Required)</span>
         </h4>
 
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen}>
           <DialogTrigger asChild>
             <Button
               variant="link"
@@ -102,15 +139,19 @@ const Charges = () => {
               </div>
 
               <DialogFooter className="px-4 py-3.5 flex justify-between">
-                <p className="flex gap-1 font-semibold text-sm text-[#6F6C6A]">
-                  <Info className="h-4 w-4 mt-[2px]" />
-                  Type 0 if charges not applicable
-                </p>
-                <DialogTrigger asChild>
-                  <Button type="submit" id="dialog-close-btn">
-                    {charges ? "Update" : "Add"}
-                  </Button>
-                </DialogTrigger>
+                <div className="flex flex-col items-start gap-2">
+                  <p className="flex gap-1 font-semibold text-sm text-[#6F6C6A]">
+                    <Info className="h-4 w-4 mt-[2px]" />
+                    Type 0 if charges not applicable
+                  </p>
+                  {formError && (
+                    <p className="text-red-500 text-sm font-medium">
+                      {formError}
+                    </p>
+                  )}
+                </div>
+
+                <Button type="submit">{charges ? "Update" : "Add"}</Button>
               </DialogFooter>
             </form>
           </DialogContent>
